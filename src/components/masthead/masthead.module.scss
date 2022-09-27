@@ -1,0 +1,48 @@
+.section1{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100vw;
+    background: rgb(70,23,194);
+    background: radial-gradient(circle, rgba(70,23,194,1) 0%, rgba(38,16,122,1) 100%);
+    color: white;
+
+}
+
+.mainDiv {
+    flex-direction: row;
+    margin-bottom: 2rem;
+
+    
+    
+    
+    h1 {
+        font-weight: bold;
+        font-size: xxx-large;
+    }
+    h2{
+        font-size: xx-large;
+        margin-bottom: 4rem;
+    }
+
+    input {
+        padding: 12px;
+        border: 2px solid white;
+        border-radius: 0.5rem;
+        color: white;
+        margin: 10px;
+        background: transparent;
+        font-size: large-large;
+        width: 40%;
+    }
+}
+
+.intraDiv{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
