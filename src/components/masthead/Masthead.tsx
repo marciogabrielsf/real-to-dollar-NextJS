@@ -2,12 +2,24 @@ import React, { useState } from 'react'
 import styles from './masthead.module.scss'
 import { maskNumber } from '../../util/mask'
 
+interface Props {
+    makeConvertion: () => string
+}
+
+
+
 const Masthead: React.FC = () => {
 
-    const [inputReal, setInputReal] = useState({ real: "", dolar: "" })
+    const [inputReal, setInputReal] = useState("")
+    const [inputDolar, setInputDolar] = useState("")
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        setInputReal({ ...inputReal, real: e.target.value })
+
+    const handleRealChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputReal(e.target.value)
+    }
+    const handleDolarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputDolar(e.target.value)
+
     }
 
     return (
@@ -19,12 +31,14 @@ const Masthead: React.FC = () => {
                     <span>R$</span>
                     <input type="text"
                         placeholder='R$'
-                        name='real'
-                        value={inputReal.real}
-                        onChange={(e) => handleChange(maskNumber(e))}
+                        value={inputReal}
+                        onChange={(e) => handleRealChange(maskNumber(e))}
+                    />
+                    <input type="text" placeholder='USD'
+                        value={inputDolar}
+                        onChange={(e) => handleDolarChange(maskNumber(e))}
                     />
                     <span>USD</span>
-                    <input type="text" placeholder='USD' />
                 </div>
             </div>
         </section>
