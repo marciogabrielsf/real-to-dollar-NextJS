@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styles from './masthead.module.scss'
 import { maskNumber } from '../../util/mask'
 import { useFetch } from '../../hooks/useFetch'
+import FullPageLoader from '../FullPageLoader/FullPageLoader'
 
 type Currency = {
     rates: any
@@ -15,7 +16,7 @@ const Masthead: React.FC = () => {
     const [inputReal, setInputReal] = useState("")
     const [inputDolar, setInputDolar] = useState("")
 
-    const { data } = useFetch<Currency>('https://api.apilayer.com/exchangerates_data/latest?symbols=USD&base=BRL')
+    const { data, isFetching } = useFetch<Currency>('https://api.apilayer.com/exchangerates_data/latest?symbols=USD&base=BRL')
 
 
     const handleBRLConvertion = (str: string, cotacao: number) => {
@@ -52,18 +53,24 @@ const Masthead: React.FC = () => {
                 <h2>Insira o valor abaixo.</h2>
                 <div>
                     <span>R$</span>
-                    <input type="text"
+                    <input
+                        type="text"
                         placeholder='R$'
                         value={inputReal}
                         onChange={(e) => handleRealChange(e)}
+                        disabled={isFetching}
                     />
-                    <input type="text" placeholder='USD'
+                    <input
+                        type="text"
+                        placeholder='USD'
                         value={inputDolar}
                         onChange={(e) => handleDolarChange(e)}
+                        disabled={isFetching}
                     />
                     <span>USD</span>
                 </div>
             </div>
+            {isFetching && <FullPageLoader />}
         </section>
     )
 }
